@@ -31,7 +31,7 @@ stdenv.mkDerivation rec {
   };
 
   # This means provided natively in Linux I think?
-  nativeBuildInputs = [cmake ];
+  nativeBuildInputs = [ cmake ];
 
   # We can eventually add these variants if needed
   # depends_on("sosflow@spack", when="@1.0:1+sosflow")

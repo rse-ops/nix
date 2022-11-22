@@ -10,11 +10,9 @@
         },
         // Note to Flux Developers! We can add extensions here that you like
         "extensions": [
-			"bbenoist.Nix",
-			"EditorConfig.EditorConfig"
-		],
-      },
-    },
-    // Needed for git security feature
-//    "postStartCommand": "git config --global --add safe.directory /workspaces/nix"
+    			"bbenoist.Nix",
+    			"EditorConfig.EditorConfig"
+    		]
+      }
+    }
   }
