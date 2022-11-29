@@ -21,10 +21,28 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [cmake pkgs.extra-cmake-modules];
-  buildInputs = [pkgs.boost172 pkgs.openmpi pkgs.zlib pkgs.hdf5 conduit];
+  buildInputs = [
+      pkgs.boost172
+      pkgs.openmpi
+      pkgs.openbabel
+      pkgs.zlib
+      pkgs.hdf5
+      pkgs.sqlite
+      conduit
+  ];
+
+  # We set the conduit paths from Nix instead
+  preConfigure = ''
+   rm cmake/FindConduit.cmake
+  '';
 
   cmakeFlags = [
     "-DCONDUIT_DIR=${lib.getDev conduit}"
+    "-DCONDUIT_FOUND=TRUE"
+    "-DCONDUIT_INCLUDE_DIRS=${lib.getDev conduit}/include/conduit"
+    "-DCONDUIT_CMAKE_CONFIG_DIR=${lib.getDev conduit}/lib/cmake/conduit"
+    "-DCMAKE_CXX_FLAGS=-I${lib.getDev conduit}/lib/cmake/conduit"
+    "-DOPENBABEL3_INCLUDE_DIRS=${lib.getDev pkgs.openbabel}/include"
   ];
 
   meta = with lib; {
