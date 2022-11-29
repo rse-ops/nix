@@ -1,4 +1,4 @@
-{ lib, stdenv, pkgs, fetchurl, fetchFromGitHub, cmake, maintainers, conduit, openbabel
+{ lib, stdenv, pkgs, fetchurl, fetchFromGitHub, cmake, maintainers, conduit
 , shared ? !stdenv.hostPlatform.isStatic,
 ...
 }:
@@ -25,9 +25,8 @@ stdenv.mkDerivation rec {
   buildInputs = [
       boost
       pkgs.openmpi
-      openbabel
+      pkgs.openbabel2
       pkgs.zlib
-      pkgs.hdf5
       pkgs.hdf5-cpp
       pkgs.sqlite
       conduit
@@ -43,8 +42,9 @@ stdenv.mkDerivation rec {
     "-DCONDUIT_FOUND=TRUE"
     "-DCONDUIT_INCLUDE_DIRS=${lib.getDev conduit}/include/conduit"
     "-DCONDUIT_CMAKE_CONFIG_DIR=${lib.getDev conduit}/lib/cmake/conduit"
-#    "-DCMAKE_CXX_FLAGS=-I${lib.getDev openbabel}/include/openbabel-2.0"
-    "-DOPENBABEL3_INCLUDE_DIRS=${lib.getDev openbabel}/include/openbabel-2.0"
+    "-DCMAKE_CXX_FLAGS=-lhdf5"
+    "-DHDF5_ROOT=${lib.getDev pkgs.hdf5-cpp}"
+    "-DOPENBABEL3_INCLUDE_DIRS=${lib.getDev pkgs.openbabel2}/include/openbabel-2.0"
   ];
 
   meta = with lib; {
