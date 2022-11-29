@@ -25,8 +25,10 @@ rec {
   conduit = pkgs.callPackage ./pkgs/hpc/conduit {
     inherit maintainers;
   };
+  openbabel = pkgs.callPackage ./pkgs/nixpkgs/openbabel {};
   conveyorlc = pkgs.callPackage ./pkgs/hpc/conveyorlc {
     inherit conduit;
+    inherit openbabel;
     inherit maintainers;
   };
 }

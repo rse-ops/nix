@@ -1,10 +1,11 @@
-{ lib, stdenv, pkgs, fetchurl, fetchFromGitHub, cmake, maintainers, conduit
+{ lib, stdenv, pkgs, fetchurl, fetchFromGitHub, cmake, maintainers, conduit, openbabel
 , shared ? !stdenv.hostPlatform.isStatic,
 ...
 }:
 
 let
    onOffBool = b: if b then "ON" else "OFF";
+   boost = pkgs.boost172.override { useMpi = true; };
 in
 
 
@@ -22,9 +23,9 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [cmake pkgs.extra-cmake-modules];
   buildInputs = [
-      pkgs.boost172
+      boost
       pkgs.openmpi
-      pkgs.openbabel
+      openbabel
       pkgs.zlib
       pkgs.hdf5
       pkgs.sqlite
@@ -41,8 +42,8 @@ stdenv.mkDerivation rec {
     "-DCONDUIT_FOUND=TRUE"
     "-DCONDUIT_INCLUDE_DIRS=${lib.getDev conduit}/include/conduit"
     "-DCONDUIT_CMAKE_CONFIG_DIR=${lib.getDev conduit}/lib/cmake/conduit"
-    "-DCMAKE_CXX_FLAGS=-I${lib.getDev conduit}/lib/cmake/conduit"
-    "-DOPENBABEL3_INCLUDE_DIRS=${lib.getDev pkgs.openbabel}/include"
+#    "-DCMAKE_CXX_FLAGS=-I${lib.getDev openbabel}/include/openbabel-2.0"
+    "-DOPENBABEL3_INCLUDE_DIRS=${lib.getDev openbabel}/include/openbabel-2.0"
   ];
 
   meta = with lib; {
