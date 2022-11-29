@@ -28,6 +28,7 @@ stdenv.mkDerivation rec {
       openbabel
       pkgs.zlib
       pkgs.hdf5
+      pkgs.hdf5-cpp
       pkgs.sqlite
       conduit
   ];
