@@ -89,6 +89,11 @@ stdenv.mkDerivation rec {
     "-DBUILD_DOCS=OFF"
   ];
 
+  # Some libraries look for it here
+  postBuild = ''
+   cp $out/lib/cmake/conduit/* $out/lib/cmake/
+  '';
+
   meta = with lib; {
     description = "Program instrumentation and performance measurement framework";
     longDescription = ''
