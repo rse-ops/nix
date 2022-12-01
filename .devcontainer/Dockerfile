@@ -2,6 +2,9 @@ FROM ubuntu:22.04
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV EDITOR=vim
 
+# Needed for cachix
+ENV USER=root
+
 RUN apt-get update && \
     apt-get install --yes \
         ca-certificates \

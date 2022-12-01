@@ -1,7 +1,7 @@
 # rse-ops Nix packages
 
 [![Build and populate cache](https://github.com/rse-ops/nix/actions/workflows/build.yaml/badge.svg)](https://github.com/rse-ops/nix/actions/workflows/build.yaml)
-[![Cachix Cache](https://img.shields.io/badge/cachix-rseops-blue.svg)](https://rseops.cachix.org)-->
+[![Cachix Cache](https://img.shields.io/badge/cachix-rseops-blue.svg)](https://rseops.cachix.org)
 
 **A [NUR](https://github.com/nix-community/NUR) "Nix User Repository"**
 
@@ -27,6 +27,13 @@ Update flake.nix
 $ nix flake update
 # or 
 $ nix flake lock --update-input nixpkgs
+```
+
+Add rseops from cachix
+
+```bash
+$ nix-env -iA cachix -f https://cachix.org/api/v1/install
+$ cachix use rseops
 ```
 
 ## Install Nix
