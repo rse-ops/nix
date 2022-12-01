@@ -1,4 +1,10 @@
-{ lib, stdenv, pkgs, fetchurl, fetchFromGitHub, cmake, maintainers, conduit
+{ lib
+, stdenv
+, pkgs
+, fetchurl
+, fetchFromGitHub
+, cmake
+, maintainers, conduit
 , shared ? !stdenv.hostPlatform.isStatic,
 ...
 }:
@@ -11,14 +17,10 @@ in
 
 stdenv.mkDerivation rec {
   pname = "conveyorlc";
-  version = "1.1.0";
+  version = "1.1.2";
 
-  src = fetchFromGitHub {
-    owner = "XiaohuaZhangLLNL";
-    repo = "conveyorlc";
-    rev = "efb98b021edd5ef230eaff257ce2534ea01ab1ba";
-    sha256 = "sha256-L/pWqKFM1/68X9HPHKMBYODlDI3Jh4IVqffDGjVNCrc=";
-    fetchSubmodules = true;
+  src = fetchurl {
+    url = "https://github.com/XiaohuaZhangLLNL/conveyorlc/archive/v${version}.tar.gz";
   };
 
   nativeBuildInputs = [cmake pkgs.extra-cmake-modules];

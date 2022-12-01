@@ -29,4 +29,7 @@ rec {
     inherit conduit;
     inherit maintainers;
   };
+  hatchet = pkgs.callPackage ./pkgs/hpc/hatchet {
+    inherit maintainers;
+  };
 }
