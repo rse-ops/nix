@@ -21,6 +21,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://github.com/XiaohuaZhangLLNL/conveyorlc/archive/v${version}.tar.gz";
+    hash = "sha256-hRQcTdwrLCnpTIqY0qzNTLvQIhbuxzaxRFGFetqT9VE=";
   };
 
   nativeBuildInputs = [cmake pkgs.extra-cmake-modules];
