@@ -17,7 +17,7 @@ in
 
 stdenv.mkDerivation rec {
   pname = "conveyorlc";
-  version = "1.1.2";
+  version = "1.1.2-1";
 
   # Updated when we have final versioned release - still a WIP
   # src = fetchurl {
