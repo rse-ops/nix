@@ -17,6 +17,7 @@ stdenv.mkDerivation rec {
 
 
   nativeBuildInputs = [
+    pkgs.bash
     pkgs.pkgconfig
     pkgs.autoconf
     pkgs.automake
@@ -32,7 +33,7 @@ stdenv.mkDerivation rec {
     pkgs.hwloc
     pkgs.lua
     pkgs.luajitPackages.luaposix
-    pkgs.python3
+    pkgs.python310
     pkgs.libuuid
     pkgs.python310Packages.cffi
     pkgs.python310Packages.pyyaml
