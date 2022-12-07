@@ -46,7 +46,8 @@ stdenv.mkDerivation rec {
   ];
 
   preConfigure = ''
-    sed -i 's/#!\/bin\/bash/#!\/usr\/bin\/env bash/' ./etc/completions/get_builtins.sh;
+    sed -i '1d' ./etc/completions/get_builtins.sh;
+    # sed -i 's/#!\/bin\/bash/#!\/usr\/bin\/env bash/' ./etc/completions/get_builtins.sh;
     cat ./etc/completions/get_builtins.sh
   '';
 
