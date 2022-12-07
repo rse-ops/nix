@@ -45,6 +45,11 @@ stdenv.mkDerivation rec {
     pkgs.asciidoc
   ];
 
+  preConfigure = ''
+    ls
+    sed -i 's/#!\/bin\/bash/#!\/usr\/bin\/env bash/' ./etc/completions/get_builtins.sh;
+  '';
+
   meta = with lib; {
     description = "A next-generation resource manager.";
     homepage = "https://github.com/flux-framework/flux-core";
