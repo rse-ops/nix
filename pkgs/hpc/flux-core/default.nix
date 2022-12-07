@@ -45,10 +45,9 @@ stdenv.mkDerivation rec {
     pkgs.asciidoc
   ];
 
+  # A native nix build won't have /bin/bash or possibly /usr/env/bin bash
   preConfigure = ''
     sed -i '1d' ./etc/completions/get_builtins.sh;
-    # sed -i 's/#!\/bin\/bash/#!\/usr\/bin\/env bash/' ./etc/completions/get_builtins.sh;
-    cat ./etc/completions/get_builtins.sh
   '';
 
   meta = with lib; {
