@@ -69,7 +69,9 @@ jobs:
     - name: Build nix packages
       env:
         NIXPKGS_ALLOW_UNFREE: 1
-      run: nix shell -f '<nixpkgs>' nix-build-uncached -c nix-build-uncached ci.nix -A cacheOutputs
+      run: |
+        ln -s /usr/bin/bash /bin/bash
+        nix shell -f '<nixpkgs>' nix-build-uncached -c nix-build-uncached ci.nix -A cacheOutputs
     - name: Trigger NUR update
       # Don't replace <YOUR_REPO_NAME> here!
       if: ${{ matrix.nurRepo != '<YOUR_REPO_NAME>' }}
