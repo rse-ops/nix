@@ -46,8 +46,8 @@ stdenv.mkDerivation rec {
   ];
 
   preConfigure = ''
-    ls
     sed -i 's/#!\/bin\/bash/#!\/usr\/bin\/env bash/' ./etc/completions/get_builtins.sh;
+    cat ./etc/completions/get_builtins.sh
   '';
 
   meta = with lib; {
