@@ -16,7 +16,6 @@ pkgs.python3Packages.buildPythonApplication rec {
   };
 
   nativeBuildInputs = [
-    pkgs.python310Packages.textx
     pkgs.python3Packages.cython
     pkgs.python3Packages.setuptools
   ];
