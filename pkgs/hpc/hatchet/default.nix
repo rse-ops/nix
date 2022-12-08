@@ -16,12 +16,12 @@ pkgs.python3Packages.buildPythonApplication rec {
   };
 
   nativeBuildInputs = [
+    pkgs.python310Packages.textx
     pkgs.python3Packages.cython
     pkgs.python3Packages.setuptools
   ];
 
   propagatedBuildInputs = [
-    pkgs.python310Packages.textx
     pkgs.python3Packages.multiprocess
     pkgs.python3Packages.matplotlib
     pkgs.python3Packages.pandas
