@@ -22,11 +22,19 @@ rec {
     inherit adiak;
     inherit maintainers;
   };
+  caliper-reader = pkgs.callPackage ./pkgs/hpc/caliper-reader {
+    inherit caliper;
+    inherit maintainers;
+  };
   conduit = pkgs.callPackage ./pkgs/hpc/conduit {
     inherit maintainers;
   };
   conveyorlc = pkgs.callPackage ./pkgs/hpc/conveyorlc {
     inherit conduit;
+    inherit maintainers;
+  };
+  hatchet = pkgs.callPackage ./pkgs/hpc/hatchet {
+    inherit caliper-reader;
     inherit maintainers;
   };
   flux-core = pkgs.callPackage ./pkgs/hpc/flux-core {
