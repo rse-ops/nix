@@ -5,6 +5,7 @@
 , caliper
 }:
 
+# TODO maybe should not build this from pypi
 
 python3Packages.buildPythonApplication rec {
   pname = "caliper-reader";

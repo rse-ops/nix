@@ -21,6 +21,7 @@ pkgs.python3Packages.buildPythonApplication rec {
   ];
 
   propagatedBuildInputs = [
+    pkgs.python3Packages.textx
     pkgs.python3Packages.multiprocess
     pkgs.python3Packages.matplotlib
     pkgs.python3Packages.pandas
