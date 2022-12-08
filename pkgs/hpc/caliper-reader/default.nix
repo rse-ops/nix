@@ -21,7 +21,7 @@ python3Packages.buildPythonApplication rec {
   ];
 
   # Only support for Python 3
-  doCheck = !pkgs.python3Packages.isPy27;
+  doCheck = !python3Packages.isPy27;
 
   meta = with lib; {
     description = "caliper-reader: A Python reader for Caliper files";
