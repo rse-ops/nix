@@ -40,4 +40,7 @@ rec {
   flux-core = pkgs.callPackage ./pkgs/hpc/flux-core {
     inherit maintainers;
   };
+  textx = pkgs.callPackage ./pkgs/python/textx {
+    inherit maintainers;
+  };
 }
