@@ -32,4 +32,8 @@ rec {
   flux-core = pkgs.callPackage ./pkgs/hpc/flux-core {
     inherit maintainers;
   };
+  flux-sched = pkgs.callPackage ./pkgs/hpc/flux-sched {
+    inherit flux-core;
+    inherit maintainers;
+  };
 }
