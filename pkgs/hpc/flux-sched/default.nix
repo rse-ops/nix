@@ -4,13 +4,11 @@
 , pkgs
 , maintainers
 , flux-core
+, llvmPackages_14
 }:
 
-let
-   boost = pkgs.boost.override { enableShared = false; enabledStatic = true; };
-in
 
-stdenv.mkDerivation rec {
+llvmPackages_14.stdenv.mkDerivation rec {
   pname = "flux-sched";
   version = "0.25.0";
 
@@ -22,17 +20,12 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     pkgs.bash
     pkgs.pkgconfig
-    #pkgs.autoconf
-    #pkgs.automake
-    #pkgs.libtool
   ];
 
   buildInputs = [
+    pkgs.valgrind
     pkgs.cudatoolkit
-    pkgs.boost
-    pkgs.boost-build
-    pkgs.boost_process
-    pkgs.boost-sml
+    pkgs.boost179
     pkgs.python310Packages.pyyaml
     pkgs.python310Packages.jsonschema
     pkgs.hwloc
@@ -40,34 +33,20 @@ stdenv.mkDerivation rec {
     pkgs.libxml2
     pkgs.libyamlcpp
     pkgs.jansson
-#    pkgs.zmqpp
     pkgs.czmq
     pkgs.libuuid
     pkgs.python310
     flux-core
   ];
 
-  # A native nix build won't have /bin/bash or possibly /usr/env/bin bash
-  #preConfigure = ''
-  # sed -i '1d' ./etc/completions/get_builtins.sh;
-  #'';
-
+  # This will error without finding Boost::System if you use pkgs.boost alone
   configureFlags = [
-     "--with-boost-libdir=${lib.getDev pkgs.boost-sml}"
+     "--with-boost-libdir=${lib.getLib pkgs.boost179}/lib/"
   ];
-#  cmakeFlags = [
-#    "-DCONDUIT_DIR=${lib.getDev conduit}"
-#    "-DCONDUIT_FOUND=TRUE"
-#    "-DCONDUIT_INCLUDE_DIRS=${lib.getDev conduit}/include/conduit"
-#    "-DCONDUIT_CMAKE_CONFIG_DIR=${lib.getDev conduit}/lib/cmake/conduit"
-#    "-DCMAKE_CXX_FLAGS=-lhdf5"
-#    "-DHDF5_ROOT=${lib.getDev pkgs.hdf5-cpp}"
-#    "-DOPENBABEL3_INCLUDE_DIRS=${lib.getDev pkgs.openbabel2}/include/openbabel-2.0"
-#  ];
 
   meta = with lib; {
     description = "A next-generation resource manager.";
-    homepage = "https://github.com/flux-framework/flux-core";
+    homepage = "https://github.com/flux-framework/flux-sched";
     license = licenses.lgpl3;
     maintainers = [ maintainers.vsoch ];
   };

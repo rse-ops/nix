@@ -25,7 +25,6 @@ llvmPackages_14.stdenv.mkDerivation rec {
             "-DElfUtils_ROOT_DIR=${lib.getDev elfutils}"
             "-DLibIberty_ROOT_DIR=${lib.getDev libiberty}"
             "-DTBB_ROOT_DIR=${lib.getDev tbb}"
-            #"-DLibIberty_LIBRARIES=${lib.getLib libiberty}/lib"
             "-DUSE_OpenMP=ON"
             "-DENABLE_STATIC_LIBS=NO"
             "-DSTERILE_BUILD=ON"
