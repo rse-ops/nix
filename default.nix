@@ -29,9 +29,9 @@ rec {
     inherit conduit;
     inherit maintainers;
   };
-  dyninst = pkgs.callPackage ./pkgs/binary-analysis/dyninst {
-    inherit maintainers;
-  };
+#  dyninst = pkgs.callPackage ./pkgs/binary-analysis/dyninst {
+#    inherit maintainers;
+#  };
   flux-core = pkgs.callPackage ./pkgs/hpc/flux-core {
     inherit maintainers;
   };
