@@ -12,12 +12,17 @@
 let
    onOffBool = b: if b then "ON" else "OFF";
    boost = pkgs.boost172.override { useMpi = true; };
+    oldpkgs = import (builtins.fetchTarball {
+        url = "https://github.com/NixOS/nixpkgs/archive/d1c3fea7ecbed758168787fe4e4a3157e52bc808.tar.gz";
+    }) {};
+
+    openmpi = oldpkgs.openmpi;
 in
 
 
 stdenv.mkDerivation rec {
   pname = "conveyorlc";
-  version = "1.1.2-1";
+  version = "1.1.2-2";
 
   # Updated when we have final versioned release - still a WIP
   # src = fetchurl {
@@ -35,7 +40,7 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [cmake pkgs.extra-cmake-modules];
   buildInputs = [
       boost
-      pkgs.openmpi
+      openmpi
       pkgs.openbabel2
       pkgs.zlib
       pkgs.hdf5-cpp
